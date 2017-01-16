@@ -1,0 +1,28 @@
+#this program use clipboard and regex to match the mail address
+#review the regex and pyperclip lib
+
+
+import pyperclip
+import re
+
+#-------NOTICE！！！---------需要ctrl+c放在剪贴板上，然后运行程序就ok-----------------------
+
+#------------将所要匹配的内容进行正则模块化转为Regex对象-----------------------
+patten = re.compile( r'[a-zA-Z0-9_.]{3,15}@[a-zA-Z0-9]{2,5}.[a-zA-Z]{2,5}')
+
+#------------存储匹配到的内容-----------------------
+matchs = []
+
+#------------将剪贴板上的内容转化为字符串，原本其实不做转化也是字符串-----------------------
+clipstr = str(pyperclip.paste())
+
+#------------打印测试-----------------------
+print(clipstr,'\n')
+#------------存储匹配到的所有内容-----------------------
+for clipcontent in patten.findall(clipstr):
+    matchs.append(clipcontent)
+
+print(matchs)
+
+
+#-----------------------------------------END----------- ------------------------
